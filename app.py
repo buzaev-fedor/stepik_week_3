@@ -118,7 +118,7 @@ def profile_teacher(teacher_id):
 
 @app.route("/booking/<int:teacher_id>/<day>/<time>/", methods=["GET", "POST"])
 def booking_form(teacher_id, day, time):
-    time = time[:2] + time[2:].replace("00", ":00")
+    time = time[0:-2] + time[-2:].replace("00", ":00")
     for teacher_name in teachers:
         if teacher_name["id"] == teacher_id:
             teacher = teacher_name
@@ -145,4 +145,4 @@ def render_server_error(error):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
